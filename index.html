@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barraca de Churros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .text-section, .image-section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .text-section.show, .image-section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .text-section {
+      flex: 1 1 400px;
+      padding: 2rem;
+      max-width: 500px;
+    }
+
+    .text-section h1 {
+      font-size: 2.5rem;
+      color: #a84300;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #333;
+      margin: 1rem 0;
+    }
+
+    .price span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #555;
+    }
+
+    .btn-order {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.9rem 2rem;
+      background: #25d366;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-order:hover {
+      background: #1ebd5a;
+      transform: scale(1.05);
+    }
+
+    .image-section {
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .image-section img {
+      width: 600px;
+      max-width: 100%;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+      transition: transform 2s ease;
+    }
+
+    .image-section img:hover {
+      transform: rotateY(360deg) scale(1.05);
+    }
+
+    /* Seção Sobre Nós */
+    .about {
+      padding: 4rem 2rem;
+      background: #fff8f0;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .about.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      color: #a84300;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(168, 67, 0, 0.9);
+      color: white;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <div class="container">
+    <!-- Texto -->
+    <div class="text-section hidden">
+      <h1>CHURROS CROCANTES</h1>
+      <p>O sabor que conquista: crocante por fora, recheado de sabor por dentro!</p>
+      <div class="price">
+        R$ 4,00 <span>no dinheiro ou Pix</span>
+        R$ 4,30 <span>no cartão</span>
+      </div>
+      <a href="https://wa.me/5521999999999" class="btn-order">📱 Peça já no WhatsApp</a>
+    </div>
+
+    <!-- Imagem -->
+    <div class="image-section hidden">
+      <img src="churros.png" alt="Churros delicioso">
+    </div>
+  </div>
+
+  <!-- Sobre Nós -->
+  <section class="about hidden">
+    <h2>Sobre Nós</h2>
+    <p>
+      Desde 2015, a <strong>Barraca de Churros da Praça</strong> vem conquistando sorrisos e corações
+      com nossos churros irresistíveis. Usamos ingredientes selecionados e receitas
+      artesanais que garantem crocância por fora e muito recheio por dentro.
+      Nosso compromisso é oferecer um doce que seja mais do que sobremesa: uma
+      experiência deliciosa para compartilhar com família e amigos.
+    </p>
+  </section>
+
+  <footer>
+    📍 Praça Central | ⏰ Seg a Dom: 16h - 22h
+  </footer>
+
+  <script>
+    // Animação ao rolar a página
+    const elements = document.querySelectorAll('.hidden');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
